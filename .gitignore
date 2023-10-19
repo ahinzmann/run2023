@@ -1,0 +1,13 @@
+CMSSW*
+NanoAODTools
+JetMET*.sh
+JetMET*.submit
+JetMET*.txt
+JetMET*.log
+QCD*.sh
+QCD*.submit
+QCD*.txt
+QCD*.log
+myproxy.pem
+submit.sh
+add.sh

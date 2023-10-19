@@ -33,7 +33,7 @@ initialdir        = /afs/desy.de/user/h/hinzmann/run2023/
 #log               = """+samplename+"""_"""+name+""".log
 #Requesting CPU and DISK Memory - default +RequestRuntime of 3h stays unaltered
 #+RequestRuntime   = 170000
-#RequestMemory     = 10G
+RequestMemory     = 4G
 JobBatchName      = """+samplename+"""
 #RequestDisk       = 10G
 getenv            = True
