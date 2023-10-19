@@ -1,0 +1,20 @@
+# this is a comment
+drop * # start with all
+keep HLT_PFHT*0
+keep HLT_PFJet*0
+keep jetAK4*
+keep PuppiMET_pt
+keep PuppiMET_sumEt
+keep event
+keep run
+keep luminosityBlock
+keep PV_npvsGood
+keep mjj
+keep chi
+keep yboost
+keep genJetAK4*
+keep genWeight
+keep Pileup_nTrueInt
+keep genmjj
+keep genchi
+keep genyboost

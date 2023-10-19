@@ -1,0 +1,10 @@
+# this is a comment
+drop * # start with all
+keep HLT_PFHT*0
+keep HLT_PFJet*0
+keep Jet*
+keep PuppiMET*
+keep event
+keep luminosityBlock
+keep run
+keep PV_npvsGood
