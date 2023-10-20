@@ -4,10 +4,15 @@ JetMET*.sh
 JetMET*.submit
 JetMET*.txt
 JetMET*.log
+JetMET*.e
+JetMET*.json
 QCD*.sh
 QCD*.submit
 QCD*.txt
 QCD*.log
+QCD*.e
+QCD*.json
 myproxy.pem
 submit.sh
 add.sh
+tmp*
