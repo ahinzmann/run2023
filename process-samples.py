@@ -29,11 +29,11 @@ notification      = Error
 notify_user       = andreas.hinzmann@desy.de
 initialdir        = /afs/desy.de/user/h/hinzmann/run2023/
 #output            = """+samplename+"""_"""+name+""".o
-#error             = """+samplename+"""_"""+name+""".e
+error             = """+samplename+"""_"""+name+""".e
 #log               = """+samplename+"""_"""+name+""".log
 #Requesting CPU and DISK Memory - default +RequestRuntime of 3h stays unaltered
 #+RequestRuntime   = 170000
-RequestMemory     = 4G
+RequestMemory     = 8G
 JobBatchName      = """+samplename+"""
 #RequestDisk       = 10G
 getenv            = True

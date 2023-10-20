@@ -1,4 +1,15 @@
-# run2023
+# Environment for sample production
+
+ssh naf-cms.desy.de
+
+source /cvmfs/grid.desy.de/etc/profile.d/grid-ui-env.sh
+source /cvmfs/cms.cern.ch/cmsset_default.sh
+export SCRAM_ARCH=slc7_amd64_gcc9
+cd ~/run2023/CMSSW_10_6_30/src/
+cmsenv
+cd ~/run2023/
+
+# Sample production
 
 python make-file-lists.py > sample-list.txt
 
@@ -11,3 +22,14 @@ source submit.sh
 python add-samples.py > add.sh
 
 source add.sh
+
+# Cross section calculation for QCD_PT samples
+
+ssh lxplus8.cern.ch
+
+export SCRAM_ARCH=el8_amd64_gcc11
+cd ~/run2023/CMSSW_13_0_13/src/
+cmsenv
+cd ~/run2023/
+
+cmsRun QCD_PT_cfg.py
