@@ -10,6 +10,7 @@ ROOT.PyConfig.IgnoreCommandLineOptions = True
 
 from PhysicsTools.NanoAODTools.postprocessing.framework.datamodel import Collection
 from PhysicsTools.NanoAODTools.postprocessing.framework.eventloop import Module
+from PhysicsTools.NanoAODTools.postprocessing.modules.jme.jetRecalib import jetRecalib
 
 class EventInfo(Module):
     def __init__(
@@ -106,9 +107,16 @@ if __name__ == "__main__":
         options.branchsel_in = options.branchsel
         options.branchsel_out = options.branchsel
 
+    if "mc" in options.branchsel_out:
+      modules.append(jetRecalib("Winter23Prompt23_V2_MC", "Winter23Prompt23_V2_MC", redoJEC=True)) # from https://github.com/cms-jet/JECDatabase/blob/master/tarballs/Summer22EEPrompt22_RunG_V1_DATA.tar.gz
+    else:
+      modules.append(jetRecalib("Summer22EEPrompt22_RunG_V1_DATA", "Summer22EEPrompt22_RunG_V1_DATA", redoJEC=True)) # from https://github.com/cms-jet/JECDatabase/blob/master/tarballs/Summer22EEPrompt22_RunG_V1_DATA.tar.gz
+    
     storeVariables=[]
     storeVariables += [
         [lambda tree: tree.branch("jetAK4_pt1", "F"), lambda tree, event: tree.fillBranch("jetAK4_pt1", event.Jet_pt[0] if event.nJet>0 else -999.)],
+        [lambda tree: tree.branch("jetAK4_pt1_raw", "F"), lambda tree, event: tree.fillBranch("jetAK4_pt1_raw", event.Jet_pt_raw[0] if event.nJet>0 else -999.)],
+        [lambda tree: tree.branch("jetAK4_pt1_nom", "F"), lambda tree, event: tree.fillBranch("jetAK4_pt1_nom", event.Jet_pt_nom[0] if event.nJet>0 else -999.)],
         [lambda tree: tree.branch("jetAK4_eta1", "F"), lambda tree, event: tree.fillBranch("jetAK4_eta1", event.Jet_eta[0] if event.nJet>0 else -999.)],
         [lambda tree: tree.branch("jetAK4_y1", "F"), lambda tree, event: tree.fillBranch("jetAK4_y1", max(min(ROOT.Math.PtEtaPhiMVector(event.Jet_pt[0],event.Jet_eta[0],event.Jet_phi[0],event.Jet_mass[0]).Rapidity(),999.),-999.) if event.nJet>0 else -999.)],
         [lambda tree: tree.branch("jetAK4_phi1", "F"), lambda tree, event: tree.fillBranch("jetAK4_phi1", event.Jet_phi[0] if event.nJet>0 else -999.)],
@@ -126,6 +134,8 @@ if __name__ == "__main__":
     ]
     storeVariables += [
         [lambda tree: tree.branch("jetAK4_pt2", "F"), lambda tree, event: tree.fillBranch("jetAK4_pt2", event.Jet_pt[1] if event.nJet>1 else -999.)],
+        [lambda tree: tree.branch("jetAK4_pt2_raw", "F"), lambda tree, event: tree.fillBranch("jetAK4_pt2_raw", event.Jet_pt_raw[1] if event.nJet>1 else -999.)],
+        [lambda tree: tree.branch("jetAK4_pt2_nom", "F"), lambda tree, event: tree.fillBranch("jetAK4_pt2_nom", event.Jet_pt_nom[1] if event.nJet>1 else -999.)],
         [lambda tree: tree.branch("jetAK4_eta2", "F"), lambda tree, event: tree.fillBranch("jetAK4_eta2", event.Jet_eta[1] if event.nJet>1 else -999.)],
         [lambda tree: tree.branch("jetAK4_y2", "F"), lambda tree, event: tree.fillBranch("jetAK4_y2", max(min(ROOT.Math.PtEtaPhiMVector(event.Jet_pt[1],event.Jet_eta[1],event.Jet_phi[1],event.Jet_mass[1]).Rapidity(),999.),-999.) if event.nJet>1 else -999.)],
         [lambda tree: tree.branch("jetAK4_phi2", "F"), lambda tree, event: tree.fillBranch("jetAK4_phi2", event.Jet_phi[1] if event.nJet>1 else -999.)],
@@ -143,6 +153,8 @@ if __name__ == "__main__":
     ]
     storeVariables += [
         [lambda tree: tree.branch("jetAK4_pt3", "F"), lambda tree, event: tree.fillBranch("jetAK4_pt3", event.Jet_pt[2] if event.nJet>2 else -999.)],
+        [lambda tree: tree.branch("jetAK4_pt3_raw", "F"), lambda tree, event: tree.fillBranch("jetAK4_pt3_raw", event.Jet_pt_raw[2] if event.nJet>2 else -999.)],
+        [lambda tree: tree.branch("jetAK4_pt3_nom", "F"), lambda tree, event: tree.fillBranch("jetAK4_pt3_nom", event.Jet_pt_nom[2] if event.nJet>2 else -999.)],
         [lambda tree: tree.branch("jetAK4_eta3", "F"), lambda tree, event: tree.fillBranch("jetAK4_eta3", event.Jet_eta[2] if event.nJet>2 else -999.)],
         [lambda tree: tree.branch("jetAK4_y3", "F"), lambda tree, event: tree.fillBranch("jetAK4_y3", max(min(ROOT.Math.PtEtaPhiMVector(event.Jet_pt[2],event.Jet_eta[2],event.Jet_phi[2],event.Jet_mass[2]).Rapidity(),999.),-999.) if event.nJet>2 else -999.)],
         [lambda tree: tree.branch("jetAK4_phi3", "F"), lambda tree, event: tree.fillBranch("jetAK4_phi3", event.Jet_phi[2] if event.nJet>2 else -999.)],
@@ -160,6 +172,8 @@ if __name__ == "__main__":
     ]
     storeVariables += [
         [lambda tree: tree.branch("mjj", "F"), lambda tree, event: tree.fillBranch("mjj", (ROOT.Math.PtEtaPhiMVector(event.Jet_pt[0],event.Jet_eta[0],event.Jet_phi[0],event.Jet_mass[0])+ROOT.Math.PtEtaPhiMVector(event.Jet_pt[1],event.Jet_eta[1],event.Jet_phi[1],event.Jet_mass[1])).M() if event.nJet>1 else -999.)],
+        [lambda tree: tree.branch("mjj_raw", "F"), lambda tree, event: tree.fillBranch("mjj_raw", (ROOT.Math.PtEtaPhiMVector(event.Jet_pt_raw[0],event.Jet_eta[0],event.Jet_phi[0],event.Jet_mass_raw[0])+ROOT.Math.PtEtaPhiMVector(event.Jet_pt_raw[1],event.Jet_eta[1],event.Jet_phi[1],event.Jet_mass_raw[1])).M() if event.nJet>1 else -999.)],
+        [lambda tree: tree.branch("mjj_nom", "F"), lambda tree, event: tree.fillBranch("mjj_nom", (ROOT.Math.PtEtaPhiMVector(event.Jet_pt_nom[0],event.Jet_eta[0],event.Jet_phi[0],event.Jet_mass_nom[0])+ROOT.Math.PtEtaPhiMVector(event.Jet_pt_nom[1],event.Jet_eta[1],event.Jet_phi[1],event.Jet_mass_nom[1])).M() if event.nJet>1 else -999.)],
         [lambda tree: tree.branch("chi", "F"), lambda tree, event: tree.fillBranch("chi", math.exp(abs(ROOT.Math.PtEtaPhiMVector(event.Jet_pt[0],event.Jet_eta[0],event.Jet_phi[0],event.Jet_mass[0]).Rapidity()-ROOT.Math.PtEtaPhiMVector(event.Jet_pt[1],event.Jet_eta[1],event.Jet_phi[1],event.Jet_mass[1]).Rapidity())) if event.nJet>1 else 999.)],
         [lambda tree: tree.branch("yboost", "F"), lambda tree, event: tree.fillBranch("yboost", abs(ROOT.Math.PtEtaPhiMVector(event.Jet_pt[0],event.Jet_eta[0],event.Jet_phi[0],event.Jet_mass[0]).Rapidity()+ROOT.Math.PtEtaPhiMVector(event.Jet_pt[1],event.Jet_eta[1],event.Jet_phi[1],event.Jet_mass[1]).Rapidity())/2. if event.nJet>1 else 999.)],
     ]
@@ -197,7 +211,7 @@ if __name__ == "__main__":
       ]
     
     modules.append(EventInfo(storeVariables=storeVariables))
-
+    
     p = PostProcessor(outdir, args,
                       cut=options.cut,
                       branchsel=options.branchsel_in,

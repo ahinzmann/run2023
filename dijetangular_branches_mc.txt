@@ -9,7 +9,7 @@ keep event
 keep run
 keep luminosityBlock
 keep PV_npvsGood
-keep mjj
+keep mjj*
 keep chi
 keep yboost
 keep genJetAK4*

@@ -4,9 +4,14 @@ for l in f.readlines():
   if samplename.startswith("JetMET"):
     branches_out="dijetangular_branches_data.txt"
     branches_in="dijetangular_branches_input_data.txt"
+    if "Run2023" in samplename:
+      json_option=" --json /afs/desy.de/user/h/hinzmann/run2023/Cert_Collisions2023_366442_370790_Golden.json" # from /eos/user/c/cmsdqm/www/CAF/certification/Collisions23/Cert_Collisions2023_366442_370790_Golden.json
+    else:
+      unknownjson
   else:
     branches_out="dijetangular_branches_mc.txt"
     branches_in="dijetangular_branches_input_mc.txt"
+    json_option=""
   f2=open(samplename+".txt")
   count=0
   for l2 in f2.readlines():
@@ -18,7 +23,7 @@ cd /afs/desy.de/user/h/hinzmann/run2023/CMSSW_10_6_30/src
 cmsenv
 cd /afs/desy.de/user/h/hinzmann/run2023
 export X509_USER_PROXY=/afs/desy.de/user/h/hinzmann/run2023/myproxy.pem
-python dijetangular_postproc.py /nfs/dust/cms/user/hinzmann/run2023/"""+samplename+"""_tree/ root://cms-xrd-global.cern.ch/"""+l2.strip("\n")+""" --bi """+branches_in+""" --bo """+branches_out+""" -P  -c "Jet_pt>200"
+python dijetangular_postproc.py /nfs/dust/cms/user/hinzmann/run2023/"""+samplename+"""_tree/ root://cms-xrd-global.cern.ch/"""+l2.strip("\n")+""" --bi """+branches_in+""" --bo """+branches_out+json_option+""" -P  -c "Jet_pt>200"
 """)
     with open(samplename+"""_"""+name+".submit",'w+') as htc_config:
             htc_config.write("""
