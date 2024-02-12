@@ -30,6 +30,12 @@ python add-samples.py > add.sh
 
 source add.sh
 
+# Get event counts for MC samples
+
+python count-events.py > count-events.sh
+
+source count-events.sh > event-counts.txt
+
 # Cross section calculation for QCD_PT samples
 
 ssh lxplus8.cern.ch
