@@ -30,11 +30,13 @@ python add-samples.py > add.sh
 
 source add.sh
 
-# Get event counts for MC samples
+# Get event counts of samples
 
-python count-events.py > count-events.sh
+python make-event-counts.py > make-event-counts.sh
 
-source count-events.sh > event-counts.txt
+source make-event-counts.sh
+
+python make-event-counts-step2.py > event-counts.txt
 
 # Cross section calculation for QCD_PT samples
 
