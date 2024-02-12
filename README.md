@@ -16,7 +16,9 @@ cd ~/run2023/
 
 # Sample production
 
-python make-file-lists.py
+python make-file-lists.py > make_file_lists.sh
+
+source make_file_lists.sh
 
 voms-proxy-init --voms cms --out /afs/desy.de/user/h/hinzmann/run2023/myproxy.pem
 
