@@ -1,10 +1,12 @@
-f=open("sample-list.txt")
+f=open("sample-list-2023.txt")
 for l in f.readlines():
   samplename=l.strip("/\n").replace("/","_")
-  if samplename.startswith("JetMET"):
+  if samplename.startswith("Jet"):
     branches_out="dijetangular_branches_data.txt"
     branches_in="dijetangular_branches_input_data.txt"
-    if "Run2023" in samplename:
+    if "Run2022" in samplename:
+      json_option=" --json /afs/desy.de/user/h/hinzmann/run2023/Cert_Collisions2022_355100_362760_Golden.json" # from /eos/user/c/cmsdqm/www/CAF/certification/Collisions22/Cert_Collisions2022_355100_362760_Golden.json
+    elif "Run2023" in samplename:
       json_option=" --json /afs/desy.de/user/h/hinzmann/run2023/Cert_Collisions2023_366442_370790_Golden.json" # from /eos/user/c/cmsdqm/www/CAF/certification/Collisions23/Cert_Collisions2023_366442_370790_Golden.json
     else:
       unknownjson
@@ -16,7 +18,7 @@ for l in f.readlines():
   count=0
   for l2 in f2.readlines():
     name=str(count)
-    with open(samplename+"""_"""+name+".sh",'w+') as wrapper_script:
+    with open("submit/"+samplename+"""_"""+name+".sh",'w+') as wrapper_script:
             wrapper_script.write("""#!/bin/bash
 source /cvmfs/cms.cern.ch/cmsset_default.sh
 cd /afs/desy.de/user/h/hinzmann/run2023/CMSSW_10_6_30/src
@@ -25,7 +27,7 @@ cd /afs/desy.de/user/h/hinzmann/run2023
 export X509_USER_PROXY=/afs/desy.de/user/h/hinzmann/run2023/myproxy.pem
 python dijetangular_postproc.py /nfs/dust/cms/user/hinzmann/run2023/"""+samplename+"""_tree/ root://cms-xrd-global.cern.ch/"""+l2.strip("\n")+""" --bi """+branches_in+""" --bo """+branches_out+json_option+""" -P  -c "Jet_pt>200"
 """)
-    with open(samplename+"""_"""+name+".submit",'w+') as htc_config:
+    with open("submit/"+samplename+"""_"""+name+".submit",'w+') as htc_config:
             htc_config.write("""
 #HTC Submission File for GEN sample production
 #requirements      =  OpSysAndVer == "SL7"
@@ -33,9 +35,9 @@ universe          = vanilla
 notification      = Error
 notify_user       = andreas.hinzmann@desy.de
 initialdir        = /afs/desy.de/user/h/hinzmann/run2023/
-#output            = """+samplename+"""_"""+name+""".o
-error             = """+samplename+"""_"""+name+""".e
-#log               = """+samplename+"""_"""+name+""".log
+#output            = submit/"""+samplename+"""_"""+name+""".o
+error             = submit/"""+samplename+"""_"""+name+""".e
+#log               = submit/"""+samplename+"""_"""+name+""".log
 #Requesting CPU and DISK Memory - default +RequestRuntime of 3h stays unaltered
 #+RequestRuntime   = 170000
 RequestMemory     = 8G
@@ -43,10 +45,10 @@ JobBatchName      = """+samplename+"""
 #RequestDisk       = 10G
 getenv            = True
 executable        = /usr/bin/sh
-arguments         = " """+samplename+"""_"""+name+""".sh"
+arguments         = " submit/"""+samplename+"""_"""+name+""".sh"
 queue 1
 """)
-    print("condor_submit "+samplename+"""_"""+name+".submit")
+    print("condor_submit submit/"+samplename+"""_"""+name+".submit")
     count+=1
 
 #NanoAOD content

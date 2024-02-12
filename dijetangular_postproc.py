@@ -106,11 +106,33 @@ if __name__ == "__main__":
     if options.branchsel != None:
         options.branchsel_in = options.branchsel
         options.branchsel_out = options.branchsel
-
-    if "mc" in options.branchsel_out:
-      modules.append(jetRecalib("Winter23Prompt23_V2_MC", "Winter23Prompt23_V2_MC", redoJEC=True)) # from https://github.com/cms-jet/JECDatabase/blob/master/tarballs/Summer22EEPrompt22_RunG_V1_DATA.tar.gz
+    
+    # 2023
+    if "Run2023C" in outdir and ("22Sep2023_v1" in outdir or "22Sep2023_v2" in outdir or "22Sep2023_v3" in outdir):
+      modules.append(jetRecalib("Summer22Prompt23_Run2023Cv123_V3_DATA", "Summer22Prompt23_Run2023Cv123_V3_DATA", jetType="AK4PFPUPPI", redoJEC=True)) # from Anna Feb 12th 2024
+    elif "Run2023C" in outdir and "22Sep2023_v4" in outdir:
+      modules.append(jetRecalib("Summer22Prompt23_Run2023Cv4_V3_DATA", "Summer22Prompt23_Run2023Cv4_V3_DATA", jetType="AK4PFPUPPI", redoJEC=True)) # from Anna Feb 12th 2024
+    elif "Run2023D" in outdir:
+      modules.append(jetRecalib("Summer22Prompt23_Run2023D_V3_DATA", "Summer22Prompt23_Run2023D_V3_DATA", jetType="AK4PFPUPPI", redoJEC=True)) # from Anna Feb 12th 2024
+    elif "Run3Summer23NanoAODv12" in outdir:
+      modules.append(jetRecalib("Summer22_22Sep2023_V2_MC", "Summer22_22Sep2023_V2_MC", jetType="AK4PFPuppi", redoJEC=True)) # from https://github.com/cms-jet/JECDatabase/blob/master/tarballs/Summer22_22Sep2023_V2_MC.tar.gz
+    elif "Run3Summer23BPixNanoAODv12" in outdir:
+      modules.append(jetRecalib("Summer22_22Sep2023_V2_MC", "Summer22_22Sep2023_V2_MC", jetType="AK4PFPuppi", redoJEC=True)) # from https://github.com/cms-jet/JECDatabase/blob/master/tarballs/Summer22_22Sep2023_V2_MC.tar.gz
+    # 2022
+    elif "Run2022C" in outdir or "Run2022D" in outdir:
+      modules.append(jetRecalib("Summer22_22Sep2023_RunCD_V2_DATA", "Summer22_22Sep2023_RunCD_V2_DATA", jetType="AK4PFPuppi", redoJEC=True)) # from https://github.com/cms-jet/JECDatabase/raw/master/tarballs/Summer22_22Sep2023_RunCD_V2_DATA.tar.gz
+    elif "Run2022E" in outdir:
+      modules.append(jetRecalib("Summer22EE_22Sep2023_RunE_V2_DATA", "Summer22EE_22Sep2023_RunE_V2_DATA", jetType="AK4PFPuppi", redoJEC=True)) # from https://github.com/cms-jet/JECDatabase/raw/master/tarballs/Summer22EE_22Sep2023_RunE_V2_DATA.tar.gz
+    elif "Run2022F" in outdir:
+      modules.append(jetRecalib("Summer22EE_22Sep2023_RunF_V2_DATA", "Summer22EE_22Sep2023_RunF_V2_DATA", jetType="AK4PFPuppi", redoJEC=True)) # from https://github.com/cms-jet/JECDatabase/raw/master/tarballs/Summer22EE_22Sep2023_RunF_V2_DATA.tar.gz
+    elif "Run2022G" in outdir:
+      modules.append(jetRecalib("Summer22EE_22Sep2023_RunG_V2_DATA", "Summer22EE_22Sep2023_RunG_V2_DATA", jetType="AK4PFPuppi", redoJEC=True)) # from https://github.com/cms-jet/JECDatabase/raw/master/tarballs/Summer22EE_22Sep2023_RunG_V2_DATA.tar.gz
+    elif "Run3Summer22NanoAODv12" in outdir:
+      modules.append(jetRecalib("Summer22_22Sep2023_V2_MC", "Summer22_22Sep2023_V2_MC", jetType="AK4PFPuppi", redoJEC=True)) # from https://github.com/cms-jet/JECDatabase/blob/master/tarballs/Summer22_22Sep2023_V2_MC.tar.gz
+    elif "Run3Summer22EENanoAODv12" in outdir:
+      modules.append(jetRecalib("Summer22EE_22Sep2023_V2_MC", "Summer22EE_22Sep2023_V2_MC", jetType="AK4PFPuppi", redoJEC=True)) # from https://github.com/cms-jet/JECDatabase/blob/master/tarballs/Summer22EE_22Sep2023_V2_MC.tar.gz
     else:
-      modules.append(jetRecalib("Summer22EEPrompt22_RunG_V1_DATA", "Summer22EEPrompt22_RunG_V1_DATA", redoJEC=True)) # from https://github.com/cms-jet/JECDatabase/blob/master/tarballs/Summer22EEPrompt22_RunG_V1_DATA.tar.gz
+      noJECs
     
     storeVariables=[]
     storeVariables += [
