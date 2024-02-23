@@ -131,6 +131,9 @@ if __name__ == "__main__":
       modules.append(jetRecalib("Summer22_22Sep2023_V2_MC", "Summer22_22Sep2023_V2_MC", jetType="AK4PFPuppi", redoJEC=True)) # from https://github.com/cms-jet/JECDatabase/blob/master/tarballs/Summer22_22Sep2023_V2_MC.tar.gz
     elif "Run3Summer22EENanoAODv12" in outdir:
       modules.append(jetRecalib("Summer22EE_22Sep2023_V2_MC", "Summer22EE_22Sep2023_V2_MC", jetType="AK4PFPuppi", redoJEC=True)) # from https://github.com/cms-jet/JECDatabase/blob/master/tarballs/Summer22EE_22Sep2023_V2_MC.tar.gz
+    # 2018
+    elif "RunIISummer20UL18" in outdir:
+      modules.append(jetRecalib("Summer19UL18_V5_MC", "Summer19UL18_V5_MC", jetType="AK4PFchs", redoJEC=True)) # from https://github.com/cms-jet/JECDatabase/blob/master/tarballs/Summer19UL18_V5_MC.tar.gz
     else:
       noJECs
     
@@ -151,7 +154,7 @@ if __name__ == "__main__":
         [lambda tree: tree.branch("jetAK4_nemf1", "F"), lambda tree, event: tree.fillBranch("jetAK4_nemf1", event.Jet_neEmEF[0] if event.nJet>0 else -999.)],
         [lambda tree: tree.branch("jetAK4_cemf1", "F"), lambda tree, event: tree.fillBranch("jetAK4_cemf1", event.Jet_chEmEF[0] if event.nJet>0 else -999.)],
         [lambda tree: tree.branch("jetAK4_btagDeepFlavB1", "F"), lambda tree, event: tree.fillBranch("jetAK4_btagDeepFlavB1", event.Jet_btagDeepFlavB[0] if event.nJet>0 else -999.)],
-        [lambda tree: tree.branch("jetAK4_TightID1", "i"), lambda tree, event: tree.fillBranch("jetAK4_TightID1", (ord(event.Jet_jetId[0])>=6) if event.nJet>0 else 0)],
+        [lambda tree: tree.branch("jetAK4_TightID1", "i"), lambda tree, event: tree.fillBranch("jetAK4_TightID1", ((event.Jet_jetId[0] if isinstance(event.Jet_jetId[0],int) else ord(event.Jet_jetId[0]))>=6) if event.nJet>0 else 0)],
         [lambda tree: tree.branch("jetAK4_nConstituents1", "i"), lambda tree, event: tree.fillBranch("jetAK4_nConstituents1", ord(event.Jet_nConstituents[0]) if event.nJet>0 else 0)],
     ]
     storeVariables += [
@@ -170,7 +173,7 @@ if __name__ == "__main__":
         [lambda tree: tree.branch("jetAK4_nemf2", "F"), lambda tree, event: tree.fillBranch("jetAK4_nemf2", event.Jet_neEmEF[1] if event.nJet>1 else -999.)],
         [lambda tree: tree.branch("jetAK4_cemf2", "F"), lambda tree, event: tree.fillBranch("jetAK4_cemf2", event.Jet_chEmEF[1] if event.nJet>1 else -999.)],
         [lambda tree: tree.branch("jetAK4_btagDeepFlavB2", "F"), lambda tree, event: tree.fillBranch("jetAK4_btagDeepFlavB2", event.Jet_btagDeepFlavB[1] if event.nJet>1 else -999.)],
-        [lambda tree: tree.branch("jetAK4_TightID2", "i"), lambda tree, event: tree.fillBranch("jetAK4_TightID2", (ord(event.Jet_jetId[1])>=6) if event.nJet>1 else 0)],
+        [lambda tree: tree.branch("jetAK4_TightID2", "i"), lambda tree, event: tree.fillBranch("jetAK4_TightID2", ((event.Jet_jetId[1] if isinstance(event.Jet_jetId[1],int) else ord(event.Jet_jetId[1]))>=6) if event.nJet>1 else 0)],
         [lambda tree: tree.branch("jetAK4_nConstituents2", "i"), lambda tree, event: tree.fillBranch("jetAK4_nConstituents2", ord(event.Jet_nConstituents[1]) if event.nJet>1 else 0)],
     ]
     storeVariables += [
@@ -189,7 +192,7 @@ if __name__ == "__main__":
         [lambda tree: tree.branch("jetAK4_nemf3", "F"), lambda tree, event: tree.fillBranch("jetAK4_nemf3", event.Jet_neEmEF[2] if event.nJet>2 else -999.)],
         [lambda tree: tree.branch("jetAK4_cemf3", "F"), lambda tree, event: tree.fillBranch("jetAK4_cemf3", event.Jet_chEmEF[2] if event.nJet>2 else -999.)],
         [lambda tree: tree.branch("jetAK4_btagDeepFlavB3", "F"), lambda tree, event: tree.fillBranch("jetAK4_btagDeepFlavB3", event.Jet_btagDeepFlavB[2] if event.nJet>2 else -999.)],
-        [lambda tree: tree.branch("jetAK4_TightID3", "i"), lambda tree, event: tree.fillBranch("jetAK4_TightID3", (ord(event.Jet_jetId[2])>=6) if event.nJet>2 else 0)],
+        [lambda tree: tree.branch("jetAK4_TightID3", "i"), lambda tree, event: tree.fillBranch("jetAK4_TightID3", ((event.Jet_jetId[2] if isinstance(event.Jet_jetId[2],int) else ord(event.Jet_jetId[2]))>=6) if event.nJet>2 else 0)],
         [lambda tree: tree.branch("jetAK4_nConstituents3", "i"), lambda tree, event: tree.fillBranch("jetAK4_nConstituents3", ord(event.Jet_nConstituents[2]) if event.nJet>2 else 0)],
     ]
     storeVariables += [

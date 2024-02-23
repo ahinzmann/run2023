@@ -1,4 +1,4 @@
-f=open("sample-list-2023.txt")
+f=open("sample-list-2018.txt")
 for l in f.readlines():
   samplename=l.strip("/\n").replace("/","_")
   if samplename.startswith("Jet"):
@@ -16,17 +16,17 @@ for l in f.readlines():
     json_option=""
   f2=open(samplename+".txt")
   count=0
-  for l2 in f2.readlines():
-    name=str(count)
-    with open("submit/"+samplename+"""_"""+name+".sh",'w+') as wrapper_script:
+  with open("submit/"+samplename+".sh",'w+') as wrapper_script:
             wrapper_script.write("""#!/bin/bash
 source /cvmfs/cms.cern.ch/cmsset_default.sh
 cd /afs/desy.de/user/h/hinzmann/run2023/CMSSW_10_6_30/src
 cmsenv
 cd /afs/desy.de/user/h/hinzmann/run2023
 export X509_USER_PROXY=/afs/desy.de/user/h/hinzmann/run2023/myproxy.pem
-python dijetangular_postproc.py /nfs/dust/cms/user/hinzmann/run2023/"""+samplename+"""_tree/ root://cms-xrd-global.cern.ch/"""+l2.strip("\n")+""" --bi """+branches_in+""" --bo """+branches_out+json_option+""" -P  -c "Jet_pt>200"
+python dijetangular_postproc.py $1 $2 --bi """+branches_in+""" --bo """+branches_out+json_option+""" -P  -c "Jet_pt>200"
 """)
+  for l2 in f2.readlines():
+    name=str(count)
     with open("submit/"+samplename+"""_"""+name+".submit",'w+') as htc_config:
             htc_config.write("""
 #HTC Submission File for GEN sample production
@@ -36,7 +36,7 @@ notification      = Error
 notify_user       = andreas.hinzmann@desy.de
 initialdir        = /afs/desy.de/user/h/hinzmann/run2023/
 #output            = submit/"""+samplename+"""_"""+name+""".o
-error             = submit/"""+samplename+"""_"""+name+""".e
+#error             = submit/"""+samplename+"""_"""+name+""".e
 #log               = submit/"""+samplename+"""_"""+name+""".log
 #Requesting CPU and DISK Memory - default +RequestRuntime of 3h stays unaltered
 #+RequestRuntime   = 170000
@@ -45,7 +45,7 @@ JobBatchName      = """+samplename+"""
 #RequestDisk       = 10G
 getenv            = True
 executable        = /usr/bin/sh
-arguments         = " submit/"""+samplename+"""_"""+name+""".sh"
+arguments         = " submit/"""+samplename+""".sh /nfs/dust/cms/user/hinzmann/run2023/"""+samplename+"""_tree/ root://cms-xrd-global.cern.ch/"""+l2.strip("\n")+""""
 queue 1
 """)
     print("condor_submit submit/"+samplename+"""_"""+name+".submit")

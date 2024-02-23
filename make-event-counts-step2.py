@@ -1,4 +1,4 @@
-f=open("sample-list.txt")
+f=open("sample-list-2018.txt")
 for l in f.readlines():
   if not "NANO" in l: continue
   print(l.strip("/\n").replace("/","_"))

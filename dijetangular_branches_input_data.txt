@@ -9,4 +9,4 @@ keep luminosityBlock
 keep run
 keep PV_npvsGood
 keep MET*
-keep Rho_fixedGridRhoFastjetAll
+keep *fixedGridRhoFastjetAll

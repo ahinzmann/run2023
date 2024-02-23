@@ -10,6 +10,6 @@ keep run
 keep GenJet*
 keep PV_npvsGood
 keep MET*
-keep Rho_fixedGridRhoFastjetAll
+keep *fixedGridRhoFastjetAll
 keep genWeight
 keep Pileup_nTrueInt
