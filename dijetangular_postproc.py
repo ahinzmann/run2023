@@ -109,15 +109,15 @@ if __name__ == "__main__":
     
     # 2023
     if "Run2023C" in outdir and ("22Sep2023_v1" in outdir or "22Sep2023_v2" in outdir or "22Sep2023_v3" in outdir):
-      modules.append(jetRecalib("Summer22Prompt23_Run2023Cv123_V3_DATA", "Summer22Prompt23_Run2023Cv123_V3_DATA", jetType="AK4PFPUPPI", redoJEC=True)) # from Anna Feb 12th 2024
+      modules.append(jetRecalib("Summer23Prompt23_RunCv123_V1_DATA", "Summer23Prompt23_RunCv123_V1_DATA", jetType="AK4PFPuppi", redoJEC=True)) # from https://github.com/cms-jet/JECDatabase/blob/master/tarballs/Summer23Prompt23_RunCv123_V1_DATA.tar.gz
     elif "Run2023C" in outdir and "22Sep2023_v4" in outdir:
-      modules.append(jetRecalib("Summer22Prompt23_Run2023Cv4_V3_DATA", "Summer22Prompt23_Run2023Cv4_V3_DATA", jetType="AK4PFPUPPI", redoJEC=True)) # from Anna Feb 12th 2024
+      modules.append(jetRecalib("Summer23Prompt23_RunCv4_V1_DATA", "Summer23Prompt23_RunCv4_V1_DATA", jetType="AK4PFPuppi", redoJEC=True)) # https://github.com/cms-jet/JECDatabase/blob/master/tarballs/Summer23Prompt23_RunCv4_V1_DATA.tar.gz
     elif "Run2023D" in outdir:
-      modules.append(jetRecalib("Summer22Prompt23_Run2023D_V3_DATA", "Summer22Prompt23_Run2023D_V3_DATA", jetType="AK4PFPUPPI", redoJEC=True)) # from Anna Feb 12th 2024
+      modules.append(jetRecalib("Summer23BPixPrompt23_RunD_V1_DATA", "Summer23BPixPrompt23_RunD_V1_DATA", jetType="AK4PFPuppi", redoJEC=True)) # from https://github.com/cms-jet/JECDatabase/blob/master/tarballs/Summer23BPixPrompt23_RunD_V1_DATA.tar.gz
     elif "Run3Summer23NanoAODv12" in outdir:
-      modules.append(jetRecalib("Summer22_22Sep2023_V2_MC", "Summer22_22Sep2023_V2_MC", jetType="AK4PFPuppi", redoJEC=True)) # from https://github.com/cms-jet/JECDatabase/blob/master/tarballs/Summer22_22Sep2023_V2_MC.tar.gz
+      modules.append(jetRecalib("Summer23Prompt23_V1_MC", "Summer23Prompt23_V1_MC", jetType="AK4PFPuppi", redoJEC=True)) # from https://github.com/cms-jet/JECDatabase/blob/master/tarballs/Summer23Prompt23_V1_MC.tar.gz
     elif "Run3Summer23BPixNanoAODv12" in outdir:
-      modules.append(jetRecalib("Summer22_22Sep2023_V2_MC", "Summer22_22Sep2023_V2_MC", jetType="AK4PFPuppi", redoJEC=True)) # from https://github.com/cms-jet/JECDatabase/blob/master/tarballs/Summer22_22Sep2023_V2_MC.tar.gz
+      modules.append(jetRecalib("Summer23BPixPrompt23_V1_MC", "Summer23BPixPrompt23_V1_MC", jetType="AK4PFPuppi", redoJEC=True)) # from https://github.com/cms-jet/JECDatabase/blob/master/tarballs/Summer23BPixPrompt23_V1_MC.tar.gz
     # 2022
     elif "Run2022C" in outdir or "Run2022D" in outdir:
       modules.append(jetRecalib("Summer22_22Sep2023_RunCD_V2_DATA", "Summer22_22Sep2023_RunCD_V2_DATA", jetType="AK4PFPuppi", redoJEC=True)) # from https://github.com/cms-jet/JECDatabase/raw/master/tarballs/Summer22_22Sep2023_RunCD_V2_DATA.tar.gz
@@ -134,6 +134,30 @@ if __name__ == "__main__":
     # 2018
     elif "RunIISummer20UL18" in outdir:
       modules.append(jetRecalib("Summer19UL18_V5_MC", "Summer19UL18_V5_MC", jetType="AK4PFchs", redoJEC=True)) # from https://github.com/cms-jet/JECDatabase/blob/master/tarballs/Summer19UL18_V5_MC.tar.gz
+    elif "Run2018A" in outdir:
+      modules.append(jetRecalib("Summer19UL18_RunA_V5_DATA", "Summer19UL18_RunA_V5_DATA", jetType="AK4PFchs", redoJEC=True)) # from https://github.com/cms-jet/JECDatabase/blob/master/tarballs/Summer19UL18_RunA_V5_DATA.tar.gz?raw=true
+    elif "Run2018B" in outdir:
+      modules.append(jetRecalib("Summer19UL18_RunB_V5_DATA", "Summer19UL18_RunB_V5_DATA", jetType="AK4PFchs", redoJEC=True)) # from https://github.com/cms-jet/JECDatabase/blob/master/tarballs/Summer19UL18_RunB_V5_DATA.tar.gz?raw=true
+    elif "Run2018C" in outdir:
+      modules.append(jetRecalib("Summer19UL18_RunC_V5_DATA", "Summer19UL18_RunC_V5_DATA", jetType="AK4PFchs", redoJEC=True)) # from https://github.com/cms-jet/JECDatabase/blob/master/tarballs/Summer19UL18_RunC_V5_DATA.tar.gz?raw=true
+    elif "Run2018D" in outdir:
+      modules.append(jetRecalib("Summer19UL18_RunD_V5_DATA", "Summer19UL18_RunD_V5_DATA", jetType="AK4PFchs", redoJEC=True)) # from https://github.com/cms-jet/JECDatabase/blob/master/tarballs/Summer19UL18_RunD_V5_DATA.tar.gz?raw=true
+    elif "Run2017B" in outdir:
+      modules.append(jetRecalib("Summer19UL17_RunB_V5_DATA", "Summer19UL17_RunB_V5_DATA", jetType="AK4PFchs", redoJEC=True)) # from https://github.com/cms-jet/JECDatabase/blob/master/tarballs/Summer19UL17_RunB_V5_DATA.tar.gz?raw=true
+    elif "Run2017C" in outdir:
+      modules.append(jetRecalib("Summer19UL17_RunC_V5_DATA", "Summer19UL17_RunC_V5_DATA", jetType="AK4PFchs", redoJEC=True)) # from https://github.com/cms-jet/JECDatabase/blob/master/tarballs/Summer19UL17_RunC_V5_DATA.tar.gz?raw=true
+    elif "Run2017D" in outdir:
+      modules.append(jetRecalib("Summer19UL17_RunD_V5_DATA", "Summer19UL17_RunD_V5_DATA", jetType="AK4PFchs", redoJEC=True)) # from https://github.com/cms-jet/JECDatabase/blob/master/tarballs/Summer19UL17_RunD_V5_DATA.tar.gz?raw=true
+    elif "Run2017E" in outdir:
+      modules.append(jetRecalib("Summer19UL17_RunE_V5_DATA", "Summer19UL17_RunE_V5_DATA", jetType="AK4PFchs", redoJEC=True)) # from https://github.com/cms-jet/JECDatabase/blob/master/tarballs/Summer19UL17_RunE_V5_DATA.tar.gz?raw=true
+    elif "Run2017F" in outdir:
+      modules.append(jetRecalib("Summer19UL17_RunF_V5_DATA", "Summer19UL17_RunF_V5_DATA", jetType="AK4PFchs", redoJEC=True)) # from https://github.com/cms-jet/JECDatabase/blob/master/tarballs/Summer19UL17_RunF_V5_DATA.tar.gz?raw=true
+    elif "Run2016B" in outdir or "Run2016C" in outdir or "Run2016D" in outdir:
+      modules.append(jetRecalib("Summer19UL16APV_RunBCD_V7_DATA", "Summer19UL16APV_RunBCD_V7_DATA", jetType="AK4PFchs", redoJEC=True)) # from https://github.com/cms-jet/JECDatabase/blob/master/tarballs/Summer19UL16_V7_all.tar.gz?raw=true
+    elif "Run2016E" in outdir or  "Run2016F-HIPM" in outdir:
+      modules.append(jetRecalib("Summer19UL16APV_RunEF_V7_DATA", "Summer19UL16APV_RunEF_V7_DATA", jetType="AK4PFchs", redoJEC=True)) # from https://github.com/cms-jet/JECDatabase/blob/master/tarballs/Summer19UL16_V7_all.tar.gz?raw=true
+    elif "Run2016F-UL" in outdir or  "Run2016G" in outdir or  "Run2016H" in outdir:
+      modules.append(jetRecalib("Summer19UL16_RunFGH_V7_DATA", "Summer19UL16_RunFGH_V7_DATA", jetType="AK4PFchs", redoJEC=True)) # from https://github.com/cms-jet/JECDatabase/blob/master/tarballs/Summer19UL16_V7_all.tar.gz?raw=true
     else:
       noJECs
     

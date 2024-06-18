@@ -1,4 +1,4 @@
-f=open("sample-list-2018.txt")
+f=open("sample-list-2023.txt")
 for l in f.readlines():
   samplename=l.strip("/\n").replace("/","_")
   if samplename.startswith("Jet"):
@@ -8,6 +8,12 @@ for l in f.readlines():
       json_option=" --json /afs/desy.de/user/h/hinzmann/run2023/Cert_Collisions2022_355100_362760_Golden.json" # from /eos/user/c/cmsdqm/www/CAF/certification/Collisions22/Cert_Collisions2022_355100_362760_Golden.json
     elif "Run2023" in samplename:
       json_option=" --json /afs/desy.de/user/h/hinzmann/run2023/Cert_Collisions2023_366442_370790_Golden.json" # from /eos/user/c/cmsdqm/www/CAF/certification/Collisions23/Cert_Collisions2023_366442_370790_Golden.json
+    elif "Run2018" in samplename:
+      json_option=" --json /afs/desy.de/user/h/hinzmann/run2023/Cert_314472-325175_13TeV_Legacy2018_Collisions18_JSON.txt" # from /eos/user/c/cmsdqm/www/CAF/certification/Collisions23/Cert_Collisions2023_366442_370790_Golden.json
+    elif "Run2017" in samplename:
+      json_option=" --json /afs/desy.de/user/h/hinzmann/run2023/Cert_294927-306462_13TeV_UL2017_Collisions17_GoldenJSON.txt" # from /eos/user/c/cmsdqm/www/CAF/certification/Collisions23/Cert_Collisions2023_366442_370790_Golden.json
+    elif "Run2016" in samplename:
+      json_option=" --json /afs/desy.de/user/h/hinzmann/run2023/Cert_271036-284044_13TeV_Legacy2016_Collisions16_JSON.txt" # from /eos/user/c/cmsdqm/www/CAF/certification/Collisions23/Cert_Collisions2023_366442_370790_Golden.json
     else:
       unknownjson
   else:
@@ -39,8 +45,8 @@ initialdir        = /afs/desy.de/user/h/hinzmann/run2023/
 #error             = submit/"""+samplename+"""_"""+name+""".e
 #log               = submit/"""+samplename+"""_"""+name+""".log
 #Requesting CPU and DISK Memory - default +RequestRuntime of 3h stays unaltered
-#+RequestRuntime   = 170000
-RequestMemory     = 8G
++RequestRuntime   = 50000
+RequestMemory     = 16G
 JobBatchName      = """+samplename+"""
 #RequestDisk       = 10G
 getenv            = True
