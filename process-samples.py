@@ -1,4 +1,4 @@
-f=open("sample-list-2023.txt")
+f=open("sample-list-2024.txt")
 for l in f.readlines():
   samplename=l.strip("/\n").replace("/","_")
   if samplename.startswith("Jet"):
@@ -8,6 +8,8 @@ for l in f.readlines():
       json_option=" --json /afs/desy.de/user/h/hinzmann/run2023/Cert_Collisions2022_355100_362760_Golden.json" # from /eos/user/c/cmsdqm/www/CAF/certification/Collisions22/Cert_Collisions2022_355100_362760_Golden.json
     elif "Run2023" in samplename:
       json_option=" --json /afs/desy.de/user/h/hinzmann/run2023/Cert_Collisions2023_366442_370790_Golden.json" # from /eos/user/c/cmsdqm/www/CAF/certification/Collisions23/Cert_Collisions2023_366442_370790_Golden.json
+    elif "Run2024" in samplename:
+      json_option=" --json /afs/desy.de/user/h/hinzmann/run2023/Cert_Collisions2024_378981_386951_Golden.json" # from https://cms-service-dqmdc.web.cern.ch/CAF/certification/Collisions24/Cert_Collisions2024_378981_386951_Golden.json
     elif "Run2018" in samplename:
       json_option=" --json /afs/desy.de/user/h/hinzmann/run2023/Cert_314472-325175_13TeV_Legacy2018_Collisions18_JSON.txt" # from /eos/user/c/cmsdqm/www/CAF/certification/Collisions23/Cert_Collisions2023_366442_370790_Golden.json
     elif "Run2017" in samplename:
@@ -25,11 +27,12 @@ for l in f.readlines():
   with open("submit/"+samplename+".sh",'w+') as wrapper_script:
             wrapper_script.write("""#!/bin/bash
 source /cvmfs/cms.cern.ch/cmsset_default.sh
-cd /afs/desy.de/user/h/hinzmann/run2023/CMSSW_10_6_30/src
+#cd /afs/desy.de/user/h/hinzmann/run2023/CMSSW_10_6_30/src
+cd /afs/desy.de/user/h/hinzmann/run2023/CMSSW_14_0_18/src
 cmsenv
 cd /afs/desy.de/user/h/hinzmann/run2023
 export X509_USER_PROXY=/afs/desy.de/user/h/hinzmann/run2023/myproxy.pem
-python dijetangular_postproc.py $1 $2 --bi """+branches_in+""" --bo """+branches_out+json_option+""" -P  -c "Jet_pt>200"
+python3 dijetangular_postproc.py $1 $2 --bi """+branches_in+""" --bo """+branches_out+json_option+""" -P  -c "Jet_pt>200"
 """)
   for l2 in f2.readlines():
     name=str(count)
@@ -46,12 +49,12 @@ initialdir        = /afs/desy.de/user/h/hinzmann/run2023/
 #log               = submit/"""+samplename+"""_"""+name+""".log
 #Requesting CPU and DISK Memory - default +RequestRuntime of 3h stays unaltered
 +RequestRuntime   = 50000
-RequestMemory     = 16G
+RequestMemory     = 32G
 JobBatchName      = """+samplename+"""
 #RequestDisk       = 10G
 getenv            = True
 executable        = /usr/bin/sh
-arguments         = " submit/"""+samplename+""".sh /nfs/dust/cms/user/hinzmann/run2023/"""+samplename+"""_tree/ root://cms-xrd-global.cern.ch/"""+l2.strip("\n")+""""
+arguments         = " submit/"""+samplename+""".sh /data/dust/user/hinzmann/run2023/"""+samplename+"""_tree/ root://cms-xrd-global.cern.ch/"""+l2.strip("\n")+""""
 queue 1
 """)
     print("condor_submit submit/"+samplename+"""_"""+name+".submit")

@@ -18,3 +18,5 @@ keep Pileup_nTrueInt
 keep genmjj
 keep genchi
 keep genyboost
+keep GenModel*
+keep LHEWeight_originalXWGTUP

@@ -9,7 +9,8 @@ keep luminosityBlock
 keep run
 keep GenJet*
 keep PV_npvsGood
-keep MET*
 keep *fixedGridRhoFastjetAll
 keep genWeight
 keep Pileup_nTrueInt
+keep GenModel*
+keep LHEWeight_originalXWGTUP

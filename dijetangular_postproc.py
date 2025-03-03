@@ -118,6 +118,21 @@ if __name__ == "__main__":
       modules.append(jetRecalib("Summer23Prompt23_V1_MC", "Summer23Prompt23_V1_MC", jetType="AK4PFPuppi", redoJEC=True)) # from https://github.com/cms-jet/JECDatabase/blob/master/tarballs/Summer23Prompt23_V1_MC.tar.gz
     elif "Run3Summer23BPixNanoAODv12" in outdir:
       modules.append(jetRecalib("Summer23BPixPrompt23_V1_MC", "Summer23BPixPrompt23_V1_MC", jetType="AK4PFPuppi", redoJEC=True)) # from https://github.com/cms-jet/JECDatabase/blob/master/tarballs/Summer23BPixPrompt23_V1_MC.tar.gz
+    # 2024
+    if "Run2024C" in outdir or "Run2024D" in outdir:
+      modules.append(jetRecalib("Winter24Prompt24_RunBCD_V2_DATA", "Winter24Prompt24_RunBCD_V2_DATA", jetType="AK4PFPuppi", redoJEC=True)) # from https://github.com/cms-jet/JECDatabase/blob/master/tarballs/Winter24Prompt24_RunBCD_V2_DATA.tar.gz
+    elif "Run2024E" in outdir:
+      modules.append(jetRecalib("Winter24Prompt24_RunE_V2_DATA", "Winter24Prompt24_RunE_V2_DATA", jetType="AK4PFPuppi", redoJEC=True)) # https://github.com/cms-jet/JECDatabase/blob/master/tarballs/Winter24Prompt24_RunE_V2_DATA.tar.gz
+    elif "Run2024F" in outdir:
+      modules.append(jetRecalib("Winter24Prompt24_RunF_V2_DATA", "Winter24Prompt24_RunF_V2_DATA", jetType="AK4PFPuppi", redoJEC=True)) # https://github.com/cms-jet/JECDatabase/blob/master/tarballs/Winter24Prompt24_RunF_V2_DATA.tar.gz
+    elif "Run2024G" in outdir:
+      modules.append(jetRecalib("Winter24Prompt24_RunG_V2_DATA", "Winter24Prompt24_RunG_V2_DATA", jetType="AK4PFPuppi", redoJEC=True)) # https://github.com/cms-jet/JECDatabase/blob/master/tarballs/Winter24Prompt24_RunG_V2_DATA.tar.gz
+    elif "Run2024H" in outdir:
+      modules.append(jetRecalib("Winter24Prompt24_RunH_V2_DATA", "Winter24Prompt24_RunH_V2_DATA", jetType="AK4PFPuppi", redoJEC=True)) # https://github.com/cms-jet/JECDatabase/blob/master/tarballs/Winter24Prompt24_RunH_V2_DATA.tar.gz
+    elif "Run2024I" in outdir:
+      modules.append(jetRecalib("Winter24Prompt24_RunI_V2_DATA", "Winter24Prompt24_RunI_V2_DATA", jetType="AK4PFPuppi", redoJEC=True)) # https://github.com/cms-jet/JECDatabase/blob/master/tarballs/Winter24Prompt24_RunI_V2_DATA.tar.gz
+    elif "RunIII2024Summer24NanoAOD" in outdir:
+      modules.append(jetRecalib("Winter24Prompt24_V2_MC", "Winter24Prompt24_V2_MC", jetType="AK4PFPuppi", redoJEC=True)) # from https://github.com/cms-jet/JECDatabase/blob/master/tarballs/Winter24Prompt24_V2_MC.tar.gz
     # 2022
     elif "Run2022C" in outdir or "Run2022D" in outdir:
       modules.append(jetRecalib("Summer22_22Sep2023_RunCD_V2_DATA", "Summer22_22Sep2023_RunCD_V2_DATA", jetType="AK4PFPuppi", redoJEC=True)) # from https://github.com/cms-jet/JECDatabase/raw/master/tarballs/Summer22_22Sep2023_RunCD_V2_DATA.tar.gz

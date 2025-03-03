@@ -1,3 +1,12 @@
+# Install environment for sample production
+
+cmsrel CMSSW_14_0_18
+cp CMSSW_10_6_30/src/PhysicsTools/NanoAODTools/python/postprocessing/modules/jme/jetRecalib.py CMSSW_14_0_18/src/PhysicsTools/NanoAODTools/python/postprocessing/modules/jme/
+cp CMSSW_10_6_30/src/PhysicsTools/NanoAODTools/data/jme/puppiCorr.root CMSSW_14_0_18/src/PhysicsTools/NanoAODTools/data/jme/
+wget https://raw.githubusercontent.com/cms-nanoAOD/nanoAOD-tools/refs/heads/master/python/postprocessing/modules/jme/JetReCalibrator.py
+wget https://raw.githubusercontent.com/cms-nanoAOD/nanoAOD-tools/refs/heads/master/python/postprocessing/tools.py
+scram b -j5
+
 # Environment for sample production
 
 ssh naf-cms.desy.de
@@ -8,7 +17,8 @@ source /cvmfs/cms.cern.ch/cmsset_default.sh
 
 export SCRAM_ARCH=slc7_amd64_gcc9
 
-cd ~/run2023/CMSSW_10_6_30/src/
+#cd ~/run2023/CMSSW_10_6_30/src/
+cd ~/run2023/CMSSW_14_0_18/src/
 
 cmsenv
 
